@@ -12,7 +12,8 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<bean id="dataSource"
+	
+		<bean id="dataSource"
 	      class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 	    <!-- mysql 버전에 따라 driverClassName의 value값이 달라짐 아래 코드는 Mysql 8기준 -->
 	    <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
@@ -20,11 +21,11 @@
 	              value="jdbc:mysql://localhost:3306/spring?useSSL=false&amp;serverTimezone=UTC">
 	    </property>
 	    <property name="username" value="root"></property>
-	    <property name="password" value="cjgreen"></property>
-	</bean> 
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	    <property name="password" value="cjgreen"></property>  <!-- mysql DB와 연동하기위해 (비번노출주의) -->
+	</bean> 	
+		<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 	    <property name="dataSource" ref="dataSource" />
-	    <property name="mapperLocations" value="classpath:/**/*Mapper.xml"></property>
+	    <property name="mapperLocations" value="classpath:/**/*Mapper.xml"></property> <!-- /**/  :모든 파일 -->
 	</bean>
 	<mybatis-spring:scan base-package="kr.green.spring.dao"/>
 </beans>

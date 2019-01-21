@@ -22,7 +22,31 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="kr.green.spring" />
+	<beans:bean id="loginInterceptor" 
+	class="kr.green.spring.interceptor.LoginInterceptor"></beans:bean>
 	
+	<beans:bean id="unauthInterceptor" 
+	class="kr.green.spring.interceptor.UnauthInterceptor"></beans:bean>
 	
+	<beans:bean id="authInterceptor" 
+	class="kr.green.spring.interceptor.AuthInterceptor"></beans:bean>
 	
+	<interceptors>
+	    <interceptor>
+	        <mapping path="/"/>  
+	        <!--  Path가 여러개일경우
+	        <mapping path="/signin"/>
+	        <mapping path="/signup"/>-->
+	        <beans:ref bean="loginInterceptor"/>  <!-- 로그인 했을때 회원이면 정보를 세션에 저장하는 역할 -->
+	    </interceptor>
+	     <interceptor>
+	        <mapping path="/"/>
+	        <mapping path="/signup"/>  
+	        <beans:ref bean="unauthInterceptor"/>
+	    </interceptor>
+	    <interceptor>
+	        <mapping path="/bbs/*"/>  
+	        <beans:ref bean="unauthInterceptor"/>
+	    </interceptor>
+	</interceptors>
 </beans:beans>

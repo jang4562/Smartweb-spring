@@ -1,0 +1,65 @@
+﻿[spring]
+
+
+controler 기본역할 >> 입력된 URI 를 찾아서 맵핑을 해줌
+
+request mapping(value="/") 
+public string  >>  문자열인 이유 : 해당jsp 를 찾아서 웹 브라우저에 띄워줘야 하기때문에 
+
+.xml : 설정 파일
+
+
+<error>
+
+
+
+HTTP Status 404 – Not Found
+
+1)Type Status Report
+
+Message /spring/WEB-INF/views/test.jsp
+
+Description The origin server did not find a current representation for the target resource or is not willing to disclose that one exists.
+
+원인>> WEB-INF/views/ 경로에 test.jsp가 없어서
+해결>> WEB-INF/views/ 경로에 test.jsp를 추가
+ 
+
+
+2) HTTP Status Report : Description The origin server did not find a current  
+원인>> 컨트롤러에 URI에 맞는 RequestMapping 값이 없어서 생기는 에러
+해결>> 컨트롤러에 해당 URI를 담당하는 메소드 추가
+
+
+
+3)HTTP Status 500 – Internal Server Error
+Type Exception Report
+
+Message Servlet.init() for servlet [appServlet] threw exception
+
+Description The server encountered an unexpected condition that prevented it from fulfilling the request.
+
+Exception
+Injection of autowired dependencies failed
+
+
+원인: sevelet-context.xml 파일에 component-scan base-pakage가 service 패키지나 dao 패키지를 포함하지 못할때
+해결:  sevelet-context.xml 파일에 component-scan base-pakage의 값을 모든 패키지가 포함되도록한다.
+예시:<context:component-scan base-package="kr.green.spring.controller" />
+
+Unable to load authentication plugin 'caching_sha2_pakage
+원인: pom.xml에 추가한 mysql-connector-java와 mysql 버전이 일치하지 않음
+해결: pom.xml 에 mysql-connector-java 버전을 수정
+예시: <dependency>
+    	<groupId>mysql</groupId>
+    	<artifactId>mysql-connector-java</artifactId>
+    	<version>8.0.11</version>
+	</dependency>
+
+4)BadSql
+원인 : Mapper에서 잘못된 쿼리문 설정
+해결 : 올바른 쿼리문으로 수정
+
+5)Duplicate 
+원인: 이미 있는 기본키를 다시 등ㄺ하려고 할 때 발생
+해결: 예외처리
