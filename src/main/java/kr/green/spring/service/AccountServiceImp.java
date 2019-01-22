@@ -9,7 +9,7 @@ import kr.green.spring.vo.AccountVo;
 @Service
 
 //service : 데이터를 처리함 (가공:정보를 바로 처리하는 것이 아니라 선택하거나 수정해서 처리함)
-public class AccountServiceimp implements AccountService{
+public class AccountServiceImp implements AccountService{
 	/*Autowired는 객체생성을 자동으로 해준다.*/
 	
 	@Autowired

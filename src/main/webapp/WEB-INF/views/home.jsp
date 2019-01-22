@@ -5,6 +5,7 @@
 <html>
 <head>
 	<title>Home</title>
+	<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.css">
 </head>
 <body>
 <h1>
@@ -26,8 +27,8 @@
 	  - DB에 접근 == dao를 이용 -->
 	
 	아이디 <input type="text" name="id"><br>
-	비밀번호 <input type="password" name="pw">
-	<button>로그인</button>     <!--자동으로 submit으로 됨 -->
+	비밀번호 <input type="password" name="pw"><br>
+	<button class="btn btn-primary">로그인</button>     <!--자동으로 submit으로 됨 -->
 </form>
 <a href="<%=request.getContextPath() %>/signup">회원가입</a>
 </body>

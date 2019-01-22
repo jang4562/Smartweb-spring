@@ -14,8 +14,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 			Object handler)
 			throws Exception {
 			HttpSession session = request.getSession();
-			Object user = session.getAttribute("user"); 
-			
+			Object user = session.getAttribute("user");
 			if(user == null ) { //회원정보가 없다면   
 				response.sendRedirect(request.getContextPath()+"/");  
 			}
