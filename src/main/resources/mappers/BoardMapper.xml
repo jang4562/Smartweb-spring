@@ -8,4 +8,7 @@
   	board(title, content, writer)
   	values(#{board.title}, #{board.content}, #{board.writer})
   </insert>
+  <select id="getBoards" resultType="kr.green.spring.vo.BoardVo">
+  	select * from board order by id desc
+  </select>
 </mapper>

@@ -1,7 +1,10 @@
 package kr.green.spring.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -18,7 +21,9 @@ public class BoardController {
 	BoardService boardService;
 	
 	@RequestMapping(value="/list")
-	public String list() {
+	public String list(Model model) {
+		List<BoardVo>boardList = boardService.getBoards();
+		model.addAttribute("list", boardList);
 		return "bbs/list";
 	}
 	@RequestMapping(value="/register", method=RequestMethod.GET)
