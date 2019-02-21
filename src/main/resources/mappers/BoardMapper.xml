@@ -11,4 +11,13 @@
   <select id="getBoards" resultType="kr.green.spring.vo.BoardVo">
   	select * from board order by id desc
   </select>
+  
+  <select id="getCountUserLists" resultType="int"> <!-- 페이징처리시필요.(전체개수) -->
+    select count(id) from board;
+  </select>
+  
+  <select id="getUserLists" resultType="kr.green.spring.vo.BoardVo"> <!-- 페이징처리시필요. -->
+    select * from board
+      order by id desc limit #{cri.startPage},#{cri.perPagenum};
+  </select>
 </mapper>
